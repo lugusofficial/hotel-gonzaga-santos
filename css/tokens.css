@@ -1,0 +1,63 @@
+/* Tokens do hotel do Gonzaga, escritos a mao (sem DESIGN.md, como no
+   Imperador). Muito branco, que e a cor do predio; o vinho #950F03 do CSS
+   proprio do hotel como cor de marca e de acao; o azul das molduras das
+   janelas da fachada como segunda cor. O azul e o ambar do site atual vem do
+   calendario do jQuery UI e ficaram de fora. */
+:root {
+  --vinho: #950f03;
+  --vinho-escuro: #5c0902;
+  --azul: #1f5d94;
+  --azul-claro: #edf2f7;
+  --tinta: #1b2230;
+  --tinta-suave: #4f5967;
+  --filete: #c3ccd6;
+
+  --color-bg: #ffffff;
+  --color-text: var(--tinta);
+  --color-muted: var(--tinta-suave);
+  --color-surface: var(--azul-claro);
+  --color-rule: var(--filete);
+  --color-accent: var(--vinho);
+  --color-on-accent: #ffffff;
+  --color-focus: var(--azul);
+
+  --font-display: "Josefin Sans", "Futura", system-ui, sans-serif;
+  --font-body: "Mulish", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --weight-display: 600;
+  --weight-display-strong: 700;
+  --weight-body: 400;
+  --weight-body-medium: 700;
+
+  --step--1: clamp(0.88rem, 0.85rem + 0.1vw, 0.94rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.4vw, 1.45rem);
+  --step-2: clamp(1.45rem, 1.28rem + 0.85vw, 1.95rem);
+  --step-3: clamp(1.85rem, 1.5rem + 1.5vw, 2.75rem);
+  --step-4: clamp(2.2rem, 1.7rem + 2.3vw, 3.6rem);
+  --step-5: clamp(2.5rem, 1.8rem + 3.3vw, 4.6rem);
+  --leading-body: 1.65;
+  --leading-tight: 1.1;
+  --measure: 62ch;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --gutter: 1rem;
+  --container: 72rem;
+  --section-gap: clamp(4.5rem, 3rem + 4vw, 7rem);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  /* Arco das janelas do predio: topo redondo, base reta suave. */
+  --arco: 999px 999px var(--radius-sm) var(--radius-sm);
+
+  --sombra: 0 14px 40px color-mix(in srgb, var(--tinta) 22%, transparent);
+}

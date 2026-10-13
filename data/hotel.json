@@ -1,0 +1,414 @@
+{
+ "nome": "Sua Marca",
+ "cidade": "Santos",
+ "tipos": {
+  "luxo": {
+   "nome": "Luxo",
+   "base": 290,
+   "pagina": "luxo.html",
+   "hosp": 2,
+   "mar": false
+  },
+  "superluxo": {
+   "nome": "Super Luxo Frente",
+   "base": 360,
+   "pagina": "super-luxo-frente.html",
+   "hosp": 2,
+   "mar": true
+  },
+  "conjugado": {
+   "nome": "Conjugado",
+   "base": 480,
+   "pagina": "conjugados.html",
+   "hosp": 4,
+   "mar": true
+  },
+  "epoca": {
+   "nome": "Quarto 350",
+   "base": 420,
+   "pagina": "quarto-350.html",
+   "hosp": 2,
+   "mar": true
+  },
+  "suite": {
+   "nome": "Suíte Super Luxo Frente",
+   "base": 520,
+   "pagina": "suite-frente.html",
+   "hosp": 3,
+   "mar": true
+  }
+ },
+ "andares": [
+  {
+   "numero": 1,
+   "quartos": [
+    {
+     "numero": 101,
+     "tipo": "suite",
+     "posicaoNaFachada": 0,
+     "precoBase": 520,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 102,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 1,
+     "precoBase": 360,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 103,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 2,
+     "precoBase": 360,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 104,
+     "tipo": "conjugado",
+     "posicaoNaFachada": 3,
+     "precoBase": 480,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 105,
+     "tipo": "luxo",
+     "posicaoNaFachada": 4,
+     "precoBase": 290,
+     "vista": "lateral",
+     "status": "disponivel"
+    },
+    {
+     "numero": 106,
+     "tipo": "luxo",
+     "posicaoNaFachada": 5,
+     "precoBase": 290,
+     "vista": "lateral",
+     "status": "disponivel"
+    }
+   ]
+  },
+  {
+   "numero": 2,
+   "quartos": [
+    {
+     "numero": 201,
+     "tipo": "suite",
+     "posicaoNaFachada": 0,
+     "precoBase": 525,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 202,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 1,
+     "precoBase": 365,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 203,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 2,
+     "precoBase": 365,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 204,
+     "tipo": "conjugado",
+     "posicaoNaFachada": 3,
+     "precoBase": 485,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 205,
+     "tipo": "luxo",
+     "posicaoNaFachada": 4,
+     "precoBase": 295,
+     "vista": "lateral",
+     "status": "disponivel"
+    },
+    {
+     "numero": 206,
+     "tipo": "luxo",
+     "posicaoNaFachada": 5,
+     "precoBase": 295,
+     "vista": "lateral",
+     "status": "disponivel"
+    }
+   ]
+  },
+  {
+   "numero": 3,
+   "quartos": [
+    {
+     "numero": 301,
+     "tipo": "suite",
+     "posicaoNaFachada": 0,
+     "precoBase": 530,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 350,
+     "tipo": "epoca",
+     "posicaoNaFachada": 1,
+     "precoBase": 430,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 303,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 2,
+     "precoBase": 370,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 304,
+     "tipo": "conjugado",
+     "posicaoNaFachada": 3,
+     "precoBase": 490,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 305,
+     "tipo": "luxo",
+     "posicaoNaFachada": 4,
+     "precoBase": 300,
+     "vista": "lateral",
+     "status": "disponivel"
+    },
+    {
+     "numero": 306,
+     "tipo": "luxo",
+     "posicaoNaFachada": 5,
+     "precoBase": 300,
+     "vista": "lateral",
+     "status": "disponivel"
+    }
+   ]
+  },
+  {
+   "numero": 4,
+   "quartos": [
+    {
+     "numero": 401,
+     "tipo": "suite",
+     "posicaoNaFachada": 0,
+     "precoBase": 535,
+     "vista": "mar",
+     "status": "indisponivel"
+    },
+    {
+     "numero": 402,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 1,
+     "precoBase": 375,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 403,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 2,
+     "precoBase": 375,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 404,
+     "tipo": "conjugado",
+     "posicaoNaFachada": 3,
+     "precoBase": 495,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 405,
+     "tipo": "luxo",
+     "posicaoNaFachada": 4,
+     "precoBase": 305,
+     "vista": "lateral",
+     "status": "disponivel"
+    },
+    {
+     "numero": 406,
+     "tipo": "luxo",
+     "posicaoNaFachada": 5,
+     "precoBase": 305,
+     "vista": "lateral",
+     "status": "disponivel"
+    }
+   ]
+  },
+  {
+   "numero": 5,
+   "quartos": [
+    {
+     "numero": 501,
+     "tipo": "suite",
+     "posicaoNaFachada": 0,
+     "precoBase": 540,
+     "vista": "mar",
+     "status": "indisponivel"
+    },
+    {
+     "numero": 502,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 1,
+     "precoBase": 380,
+     "vista": "mar",
+     "status": "indisponivel"
+    },
+    {
+     "numero": 503,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 2,
+     "precoBase": 380,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 504,
+     "tipo": "conjugado",
+     "posicaoNaFachada": 3,
+     "precoBase": 500,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 505,
+     "tipo": "luxo",
+     "posicaoNaFachada": 4,
+     "precoBase": 310,
+     "vista": "lateral",
+     "status": "disponivel"
+    },
+    {
+     "numero": 506,
+     "tipo": "luxo",
+     "posicaoNaFachada": 5,
+     "precoBase": 310,
+     "vista": "lateral",
+     "status": "disponivel"
+    }
+   ]
+  },
+  {
+   "numero": 6,
+   "quartos": [
+    {
+     "numero": 601,
+     "tipo": "suite",
+     "posicaoNaFachada": 0,
+     "precoBase": 545,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 602,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 1,
+     "precoBase": 385,
+     "vista": "mar",
+     "status": "indisponivel"
+    },
+    {
+     "numero": 603,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 2,
+     "precoBase": 385,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 604,
+     "tipo": "conjugado",
+     "posicaoNaFachada": 3,
+     "precoBase": 505,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 605,
+     "tipo": "luxo",
+     "posicaoNaFachada": 4,
+     "precoBase": 315,
+     "vista": "lateral",
+     "status": "disponivel"
+    },
+    {
+     "numero": 606,
+     "tipo": "luxo",
+     "posicaoNaFachada": 5,
+     "precoBase": 315,
+     "vista": "lateral",
+     "status": "disponivel"
+    }
+   ]
+  },
+  {
+   "numero": 7,
+   "quartos": [
+    {
+     "numero": 701,
+     "tipo": "suite",
+     "posicaoNaFachada": 0,
+     "precoBase": 550,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 702,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 1,
+     "precoBase": 390,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 703,
+     "tipo": "superluxo",
+     "posicaoNaFachada": 2,
+     "precoBase": 390,
+     "vista": "mar",
+     "status": "disponivel"
+    },
+    {
+     "numero": 704,
+     "tipo": "conjugado",
+     "posicaoNaFachada": 3,
+     "precoBase": 510,
+     "vista": "mar",
+     "status": "indisponivel"
+    },
+    {
+     "numero": 705,
+     "tipo": "luxo",
+     "posicaoNaFachada": 4,
+     "precoBase": 320,
+     "vista": "lateral",
+     "status": "disponivel"
+    },
+    {
+     "numero": 706,
+     "tipo": "luxo",
+     "posicaoNaFachada": 5,
+     "precoBase": 320,
+     "vista": "lateral",
+     "status": "disponivel"
+    }
+   ]
+  }
+ ]
+}
