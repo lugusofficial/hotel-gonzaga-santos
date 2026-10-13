@@ -262,7 +262,7 @@
       }).join('') + '</ul>' + fr('sobeAndar', 'Os de frente para o mar olham para os jardins da orla do Gonzaga.');
     },
     cafe: function () {
-      return fr('cafe', 'O café da manhã é servido em buffet no restaurante do hotel. Precisa de café sem glúten? Avise a recepção na reserva.')
+      return fr('cafe', 'O café da manhã é servido em buffet no restaurante do hotel. Para restrição alimentar, fale com a recepção pelo WhatsApp.')
         + ' <a href="' + PREFIXO + 'estrutura.html">' + fr('verCafe', 'Ver o café e a estrutura') + '</a>';
     },
     horario: function () { return fr('horario', 'A recepção funciona 24 horas e passa os horários de entrada e saída junto com a reserva, pelo WhatsApp.'); },

@@ -14,7 +14,7 @@
 // - Movimento reduzido: sem balanco de passo e troca de espaco por corte.
 // - Tudo o que o tour mostra tambem esta escrito na lista de espacos da pagina.
 
-const ALTURA = 1.4, DMIN = 0.3, DMAX = 40;   // iguais ao gen_paraiso_depth.py
+const ALTURA = 1.4, DMIN = 0.3, DMAX = 40;   // iguais ao script que gera os mapas
 const FOLGA = 1.4;                           // distancia minima de parede, em metros
 
 const raiz = document.querySelector('[data-tour]');
