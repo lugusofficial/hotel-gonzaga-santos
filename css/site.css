@@ -248,3 +248,6 @@ h2 { font-size: var(--step-3); }
 .js-reveal [data-reveal-filhos].is-visible > :nth-child(3) { transition-delay: 220ms; }
 .js-reveal [data-reveal-filhos].is-visible > :nth-child(4) { transition-delay: 330ms; }
 .js-reveal [data-reveal-filhos].is-visible > :nth-child(5) { transition-delay: 440ms; }
+
+/* Celular: o botao do atendente ocupa o canto direito; a seta vai para a esquerda. */
+@media (max-width: 40em) { .cena__seta { left: var(--space-5); translate: 0 0; } }
