@@ -154,12 +154,17 @@ h2 { font-size: var(--step-3); }
    fica logo abaixo do topo. */
 .reserva { position: relative; z-index: 2; }
 .cena + .reserva { margin-top: calc(-1 * var(--space-8)); }
-.reserva__form { display: grid; gap: var(--space-3); align-items: end; padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-bg); outline: 1px solid var(--filete); }
+.reserva__form { display: grid; gap: var(--space-4); align-items: end; padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-bg); outline: 1px solid var(--filete); }
 .reserva__titulo { font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: 0.14em; text-transform: uppercase; font-size: var(--step--1); color: var(--vinho); }
 .reserva .field label { font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; font-weight: var(--weight-body-medium); color: var(--tinta-suave); }
 .reserva .btn { min-height: 3rem; }
 @media (min-width: 40em) { .reserva__form { grid-template-columns: repeat(2, minmax(0, 1fr)); } .reserva__titulo { grid-column: 1 / -1; } }
-@media (min-width: 64em) { .reserva__form { grid-template-columns: repeat(5, minmax(0, 1fr)) auto; } }
+@media (min-width: 52em) and (max-width: 74.99em) { .reserva__form { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 75em) { .reserva__form { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto; } }
+/* O campo de data tem largura minima propria e invadia a coluna vizinha. */
+.reserva .field { min-width: 0; }
+.reserva .field input, .reserva .field select { min-width: 0; width: 100%; height: 3rem; min-height: 3rem; padding-block: 0; padding-inline: var(--space-3); line-height: 1.2; }
+.reserva .field label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .topo + .reserva { margin-bottom: var(--space-4); }
 
 /* Modal de demonstracao */
