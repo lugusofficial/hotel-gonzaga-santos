@@ -20,9 +20,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Mulish:wght@400;700&display=swap">
 <link rel="stylesheet" href="css/tokens.css?v=417909fa">
 <link rel="stylesheet" href="css/base.css?v=050fb767">
-<link rel="stylesheet" href="css/site.css?v=2b79e71b">
+<link rel="stylesheet" href="css/site.css?v=cd592eec">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Hotel", "name": "Sua Marca", "description": "Hotel em prédio histórico de esquina na orla do Gonzaga, em Santos.", "url": "https://example.com/", "telephone": "+0000000000", "email": "reservas@example.com", "address": {"@type": "PostalAddress", "streetAddress": "Av. Exemplo, 1", "addressLocality": "Santos", "addressRegion": "SP", "addressCountry": "BR"}, "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Wi-Fi grátis", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Recepção 24 horas", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Café da manhã", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Sauna", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Salão de beleza", "value": true}]}</script>
-<script src="js/main.js?v=5c9f7cbd" defer></script>
+<script src="js/main.js?v=1a4278a2" defer></script>
 <script src="js/atendente.js?v=4bdf351c" defer></script>
 </head>
 <body>
@@ -37,7 +37,7 @@
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Principal" data-open="false">
       <ul><li><a href="apartamentos.html">Apartamentos</a></li><li><a href="estrutura.html">Estrutura</a></li><li><a href="localizacao.html">Localização</a></li><li><a href="contato.html" aria-current="page">Contato</a></li></ul>
-      <a class="btn btn--primary" href="https://wa.me/0000000000?text=Ol%C3%A1%21%20Quero%20fazer%20uma%20reserva.">Reservar</a>
+      <a class="btn btn--primary" href="index.html#reservar">Reservar</a>
     </nav>
   </div>
 </header>
@@ -79,6 +79,20 @@
     </div>
   </section>
 </main>
+
+<dialog class="modal" id="modal-demo" aria-labelledby="modal-titulo" aria-describedby="modal-texto">
+  <p class="kicker">Site de demonstração</p>
+  <h2 id="modal-titulo">Sua reserva começaria aqui</h2>
+  <p id="modal-texto">Este é um site de demonstração. Quando for ao ar, o botão abre a reserva on line do hotel já com as datas e os hóspedes escolhidos, com pagamento e confirmação na hora.</p>
+  <dl class="modal__resumo" data-modal-resumo></dl>
+  <div class="modal__acoes">
+    <button class="btn btn--primary" type="button" data-modal-fechar>Entendi</button>
+  </div>
+  <button class="modal__x" type="button" data-modal-fechar>
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    <span class="visually-hidden">Fechar</span>
+  </button>
+</dialog>
 
 <div class="atendente" data-atendente data-whatsapp="https://wa.me/0000000000" hidden>
   <button class="atendente__abrir" type="button" data-atendente-abrir aria-expanded="false" aria-controls="atendente-painel">

@@ -156,6 +156,58 @@
     });
   }
 
+  /* Barra de reserva do demo. No site no ar, o envio vai para o motor de
+     reservas que o hotel ja usa, no formato:
+       https://hbook.hsystem.com.br/booking?companyId=<id do hotel>
+         &checkin=DD/MM/AAAA&checkout=DD/MM/AAAA&adults=N&children=N&language=pt
+     Aqui o envio so abre o modal explicando isso, com o resumo do pedido. */
+  var reserva = document.querySelector('form[data-reserva]');
+  var modal = document.getElementById('modal-demo');
+  if (reserva && modal) {
+    var ent = reserva.querySelector('[name="entrada"]');
+    var sai = reserva.querySelector('[name="saida"]');
+    var iso = function (d) { return d.toISOString().slice(0, 10); };
+    var hoje = new Date();
+    var amanha = new Date(hoje.getTime() + 864e5);
+    ent.min = iso(hoje);
+    if (!ent.value) { ent.value = iso(hoje); }
+    if (!sai.value) { sai.value = iso(amanha); }
+    var ajustarSaida = function () {
+      var min = new Date(new Date(ent.value).getTime() + 864e5);
+      sai.min = iso(min);
+      if (!sai.value || sai.value <= ent.value) { sai.value = iso(min); }
+    };
+    ajustarSaida();
+    ent.addEventListener('change', ajustarSaida);
+    var br = function (v) { var p = v.split('-'); return p[2] + '/' + p[1] + '/' + p[0]; };
+    var resumo = modal.querySelector('[data-modal-resumo]');
+    var ultimoFoco = null;
+    var fechar = function () { modal.close(); };
+    modal.addEventListener('close', function () { if (ultimoFoco) { ultimoFoco.focus(); } });
+    modal.addEventListener('click', function (e) { if (e.target === modal) { fechar(); } });
+    [].slice.call(modal.querySelectorAll('[data-modal-fechar]')).forEach(function (b) { b.addEventListener('click', fechar); });
+    reserva.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!reserva.reportValidity()) { return; }
+      var adultos = reserva.querySelector('[name="adultos"]');
+      var criancas = reserva.querySelector('[name="criancas"]');
+      var linhas = [
+        ['Entrada', br(ent.value)], ['Saída', br(sai.value)],
+        ['Hóspedes', adultos.options[adultos.selectedIndex].text + (criancas.value !== '0' ? ', ' + criancas.options[criancas.selectedIndex].text : '')]
+      ];
+      if (reserva.getAttribute('data-apto')) { linhas.unshift(['Apartamento', reserva.getAttribute('data-apto')]); }
+      resumo.innerHTML = '';
+      linhas.forEach(function (l) {
+        var div = document.createElement('div');
+        var dt = document.createElement('dt'); dt.textContent = l[0];
+        var dd = document.createElement('dd'); dd.textContent = l[1];
+        div.appendChild(dt); div.appendChild(dd); resumo.appendChild(div);
+      });
+      ultimoFoco = document.activeElement;
+      if (modal.showModal) { modal.showModal(); } else { modal.setAttribute('open', ''); }
+    });
+  }
+
   var ano = document.querySelector('[data-year]');
   if (ano) { ano.textContent = String(new Date().getFullYear()); }
 })();
