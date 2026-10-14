@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contato e reservas | Sua Marca</title>
 <meta name="description" content="Reservas pelo WhatsApp, telefone e email do hotel da orla do Gonzaga, em Santos. Recepção 24 horas.">
-<link rel="canonical" href="https://example.com/contato.html">
+<link rel="canonical" href="https://lugusofficial.github.io/hotel-gonzaga-santos/contato.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sua Marca">
 <meta property="og:title" content="Contato e reservas | Sua Marca">
 <meta property="og:description" content="Reservas pelo WhatsApp, telefone e email do hotel da orla do Gonzaga, em Santos. Recepção 24 horas.">
-<meta property="og:url" content="https://example.com/contato.html">
-<meta property="og:image" content="assets/fachada.jpg">
+<meta property="og:url" content="https://lugusofficial.github.io/hotel-gonzaga-santos/contato.html">
+<meta property="og:image" content="https://lugusofficial.github.io/hotel-gonzaga-santos/assets/fachada.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#950f03">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -20,9 +20,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Mulish:wght@400;700&display=swap">
 <link rel="stylesheet" href="css/tokens.css?v=417909fa">
 <link rel="stylesheet" href="css/base.css?v=050fb767">
-<link rel="stylesheet" href="css/site.css?v=5db77a22">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Hotel", "name": "Sua Marca", "description": "Hotel em prédio histórico de esquina na orla do Gonzaga, em Santos.", "url": "https://example.com/", "telephone": "+0000000000", "email": "reservas@example.com", "address": {"@type": "PostalAddress", "streetAddress": "Av. Exemplo, 1", "addressLocality": "Santos", "addressRegion": "SP", "addressCountry": "BR"}, "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Wi-Fi grátis", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Recepção 24 horas", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Café da manhã", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Sauna", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Salão de beleza", "value": true}]}</script>
-<script src="js/main.js?v=1a4278a2" defer></script>
+<link rel="stylesheet" href="css/site.css?v=b79204d5">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Hotel", "name": "Sua Marca", "description": "Hotel em prédio histórico de esquina na orla do Gonzaga, em Santos.", "url": "https://lugusofficial.github.io/hotel-gonzaga-santos/", "telephone": "+0000000000", "email": "reservas@example.com", "address": {"@type": "PostalAddress", "streetAddress": "Av. Exemplo, 1", "addressLocality": "Santos", "addressRegion": "SP", "addressCountry": "BR"}, "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Wi-Fi grátis", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Recepção 24 horas", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Café da manhã", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Sauna", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Salão de beleza", "value": true}]}</script>
+<script src="js/main.js?v=179bbacd" defer></script>
 <script src="js/atendente.js?v=4bdf351c" defer></script>
 </head>
 <body>
@@ -117,6 +117,21 @@
     <p class="atendente__aviso">Respostas automáticas de demonstração. Para reservar, a conversa segue no WhatsApp.</p>
   </div>
 </div>
+
+<section class="news" aria-labelledby="news-titulo">
+  <div class="container news__grid">
+    <div>
+      <h2 id="news-titulo">Promoções no seu e-mail</h2>
+      <p>Pacotes de feriado e diárias com desconto, direto da recepção. Sem spam.</p>
+    </div>
+    <form class="news__form" data-news novalidate>
+      <label class="visually-hidden" for="news-email">Seu e-mail</label>
+      <input id="news-email" name="email" type="email" autocomplete="email" placeholder="Seu e-mail" required>
+      <button class="btn btn--claro" type="submit">Quero receber</button>
+      <p class="news__status" role="status"></p>
+    </form>
+  </div>
+</section>
 <footer class="site-footer">
   <div class="container">
     <div class="rodape">

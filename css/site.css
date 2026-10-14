@@ -82,6 +82,8 @@ h2 { font-size: var(--step-3); }
 .predio { display: grid; gap: var(--space-7); align-items: center; }
 @media (min-width: 52em) { .predio { grid-template-columns: 5fr 6fr; } }
 .predio .arco img { aspect-ratio: 3 / 4; }
+.predio > div:not(.arco) > * + * { margin-top: var(--space-4); }
+.predio > div:not(.arco) > p:has(> .btn) { margin-top: var(--space-6); }
 .fatos { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
 @media (min-width: 40em) { .fatos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .fatos li { padding-top: var(--space-3); background: linear-gradient(var(--filete), var(--filete)) top / 100% 1px no-repeat; }
@@ -138,9 +140,9 @@ h2 { font-size: var(--step-3); }
 .ficha dt { font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--tinta-suave); }
 .ficha dd { margin: 0; font-family: var(--font-display); font-weight: var(--weight-display); font-size: var(--step-1); }
 .topo .cluster { margin-top: var(--space-5); }
-.comodidades { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); }
-.comodidades li { display: inline-flex; align-items: center; gap: var(--space-2); }
-.comodidades li::before { content: ""; width: 0.45rem; height: 0.45rem; background: var(--vinho); transform: rotate(45deg); }
+.comodidades { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: var(--space-4) var(--space-5); }
+.comodidades li { display: flex; align-items: center; gap: var(--space-3); }
+.icon--com { width: 2.5rem; height: 2.5rem; padding: 0.55rem; flex: none; border-radius: var(--radius-pill); background: var(--color-bg); color: var(--vinho); stroke-width: 1.6; }
 .variacoes { display: grid; gap: var(--space-5); }
 @media (min-width: 48em) { .variacoes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .variacoes li { padding-top: var(--space-4); border-top: 3px double var(--vinho); display: grid; gap: var(--space-2); }
@@ -148,7 +150,20 @@ h2 { font-size: var(--step-3); }
 .galeria { display: grid; gap: var(--space-4); }
 @media (min-width: 48em) { .galeria { grid-template-columns: 3fr 2fr; } }
 .galeria img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-md); aspect-ratio: 4 / 3; }
-.outros { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); }
+/* Outros apartamentos: cartoes com foto, nome, preco e seta; o cartao inteiro e o link */
+.outros { display: grid; gap: var(--space-4); }
+@media (min-width: 40em) { .outros { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 80em) { .outros { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.outro { display: grid; grid-template-columns: 5.5rem 1fr auto; align-items: center; gap: var(--space-4); padding: var(--space-3); border-radius: var(--radius-lg); background: var(--color-bg); color: inherit; text-decoration: none; transition: transform 200ms ease; }
+.outro img { width: 5.5rem; height: 5.5rem; object-fit: cover; border-radius: var(--radius-md); }
+.outro__texto { display: grid; gap: var(--space-1); }
+.outro__nome { font-family: var(--font-display); font-weight: var(--weight-display); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.25; overflow-wrap: normal; transition: color 200ms ease; }
+.outro__preco { font-size: var(--step--1); color: var(--tinta-suave); }
+.outro__ir { width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: var(--radius-pill); background: var(--vinho); color: var(--color-bg); transition: transform 200ms ease, background-color 200ms ease; }
+.outro__ir .icon { width: 1.1rem; height: 1.1rem; }
+.outro:hover { transform: translateY(-3px); }
+.outro:hover .outro__nome { color: var(--vinho); }
+.outro:hover .outro__ir { transform: translateX(3px); background: var(--vinho-escuro); }
 
 /* Barra de reserva: sobe sobre o fim do heroi na home; nas outras paginas
    fica logo abaixo do topo. */
@@ -160,11 +175,12 @@ h2 { font-size: var(--step-3); }
 .reserva .btn { min-height: 3rem; }
 @media (min-width: 40em) { .reserva__form { grid-template-columns: repeat(2, minmax(0, 1fr)); } .reserva__titulo { grid-column: 1 / -1; } }
 @media (min-width: 52em) and (max-width: 74.99em) { .reserva__form { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 75em) { .reserva__form { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto; } }
+@media (min-width: 75em) { .reserva__form { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr) minmax(0, 1.05fr) minmax(0, 1.05fr) minmax(0, 0.85fr) auto; } }
 /* O campo de data tem largura minima propria e invadia a coluna vizinha. */
 .reserva .field { min-width: 0; }
 .reserva .field input, .reserva .field select { min-width: 0; width: 100%; height: 3rem; min-height: 3rem; padding-block: 0; padding-inline: var(--space-3); line-height: 1.2; }
 .reserva .field label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.reserva .field select { padding-inline-end: var(--space-6); text-overflow: ellipsis; }
 .topo + .reserva { margin-bottom: var(--space-4); }
 
 /* Modal de demonstracao */
@@ -260,6 +276,19 @@ h2 { font-size: var(--step-3); }
 .atendente__enviar { min-height: 2.75rem; padding: 0 var(--space-4); border: 0; border-radius: var(--radius-pill); background: var(--vinho); color: var(--color-bg); font: inherit; font-size: var(--step--1); cursor: pointer; }
 .atendente__aviso { margin: 0; padding: 0 var(--space-4) var(--space-3); font-size: var(--step--1); color: var(--tinta-suave); }
 @media (max-width: 40em) { .atendente { left: var(--gutter); } .atendente__painel { width: 100%; max-height: calc(100svh - 5rem); } }
+
+/* Promocoes por e-mail, logo acima do rodape */
+.news { background: var(--vinho); color: var(--color-bg); margin-top: var(--section-gap); padding-block: var(--space-7); }
+.news + .site-footer { margin-top: 0; }
+.news__grid { display: grid; gap: var(--space-5); align-items: center; }
+@media (min-width: 52em) { .news__grid { grid-template-columns: 5fr 6fr; gap: var(--space-8); } }
+.news h2 { color: var(--color-bg); font-size: var(--step-2); }
+.news p { color: var(--color-bg); }
+.news__form { display: grid; grid-template-columns: 1fr auto; gap: var(--space-3); }
+.news__form input { min-width: 0; min-height: 3rem; padding: 0 var(--space-5); border: 0; border-radius: var(--radius-pill); background: var(--color-bg); color: var(--tinta); font: inherit; }
+.news__form input::placeholder { color: var(--tinta-suave); }
+.news__status { grid-column: 1 / -1; min-height: 1.5em; font-size: var(--step--1); }
+@media (max-width: 30em) { .news__form { grid-template-columns: 1fr; } }
 
 /* Rodape */
 .site-footer { background: var(--tinta); color: var(--color-bg); margin-top: var(--section-gap); padding-block: var(--space-8) var(--space-6); }

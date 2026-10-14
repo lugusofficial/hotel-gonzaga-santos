@@ -208,6 +208,24 @@
     });
   }
 
+  /* Promocoes por e-mail: no demo o envio so confirma na tela. No site no ar,
+     o e-mail vai para a lista de contatos do hotel (servico de e-mail marketing). */
+  var news = document.querySelector('form[data-news]');
+  if (news) {
+    var nStatus = news.querySelector('.news__status');
+    news.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var campo = news.querySelector('[name="email"]');
+      if (!campo.checkValidity()) {
+        nStatus.textContent = 'Confira o e-mail digitado.';
+        campo.focus();
+        return;
+      }
+      nStatus.textContent = 'Pronto! As promoções vão para ' + campo.value + '. (Demonstração: nada foi enviado.)';
+      news.reset();
+    });
+  }
+
   var ano = document.querySelector('[data-year]');
   if (ano) { ano.textContent = String(new Date().getFullYear()); }
 })();
