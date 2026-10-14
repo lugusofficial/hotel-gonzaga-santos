@@ -17,7 +17,7 @@
 //   onde a imagem mais deforma. Um disco com a cor do piso cobre o que sobra dele.
 
 const ALTURA = 1.4, DMIN = 0.3, DMAX = 40;   // iguais ao script que gera os mapas
-const FOLGA = 1.4;                           // distancia minima de parede, em metros
+const FOLGA = 0.6;                           // distancia minima de parede e movel, em metros (1,4 travava a caminhada)
 const PITCH_MIN = -0.75, PITCH_MAX = 1.0;     // em radianos
 const RAIO_DISCO = 0.85;                     // disco que cobre o nadir, em metros
 
