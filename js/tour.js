@@ -13,9 +13,13 @@
 // - Andar tem limite: perto da borda do que a foto mostra a malha estica.
 // - Movimento reduzido: sem balanco de passo e troca de espaco por corte.
 // - Tudo o que o tour mostra tambem esta escrito na lista de espacos da pagina.
+// - O olhar nao desce ate o pe (PITCH_MIN): o polo de baixo do panorama gerado e
+//   onde a imagem mais deforma. Um disco com a cor do piso cobre o que sobra dele.
 
 const ALTURA = 1.4, DMIN = 0.3, DMAX = 40;   // iguais ao script que gera os mapas
 const FOLGA = 1.4;                           // distancia minima de parede, em metros
+const PITCH_MIN = -0.75, PITCH_MAX = 1.0;     // em radianos
+const RAIO_DISCO = 0.85;                     // disco que cobre o nadir, em metros
 
 const raiz = document.querySelector('[data-tour]');
 if (raiz) iniciar(raiz);
@@ -33,7 +37,7 @@ function iniciar(raiz) {
   const reduzido = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const base = new URL('../', import.meta.url);
 
-  let THREE, renderer, cena, cenaB, camera, malha, anel = null, cursor, transicao = null;
+  let THREE, renderer, cena, cenaB, camera, malha, anel = null, cursor, disco = null, transicao = null;
   let atual = null, ocupado = false, ativo = false;
   let yaw = 0, pitch = -0.08, pos = { x: 0, z: 0 }, alvo = null, passo = 0;
   let precisa = true;
@@ -107,6 +111,45 @@ function iniciar(raiz) {
     return new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: textura }));
   }
 
+  // Cor media do piso: as ultimas linhas do panorama, longe do polo, que e onde a imagem
+  // gerada mais deforma. Vira um disco de borda suave sob a camera.
+  function corDoPiso(textura) {
+    const img = textura.image, c = document.createElement('canvas');
+    c.width = 64; c.height = 32;
+    const g = c.getContext('2d', { willReadFrequently: true });
+    g.drawImage(img, 0, 0, 64, 32);
+    const px = g.getImageData(0, 25, 64, 4).data;
+    let r = 0, gg = 0, b = 0;
+    for (let i = 0; i < px.length; i += 4) { r += px[i]; gg += px[i + 1]; b += px[i + 2]; }
+    const n = px.length / 4;
+    return [Math.round(r / n), Math.round(gg / n), Math.round(b / n)];
+  }
+
+  function pintarDisco(textura) {
+    const [r, g, b] = corDoPiso(textura);
+    const c = document.createElement('canvas');
+    c.width = c.height = 256;
+    const ctx = c.getContext('2d');
+    const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+    grad.addColorStop(0, `rgba(${r},${g},${b},1)`);
+    grad.addColorStop(0.62, `rgba(${r},${g},${b},0.96)`);
+    grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 256, 256);
+    const tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    if (!disco) {
+      disco = new THREE.Mesh(new THREE.CircleGeometry(RAIO_DISCO, 48).rotateX(-Math.PI / 2),
+        new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthTest: false, depthWrite: false }));
+      disco.renderOrder = 1;
+      cena.add(disco);
+    } else {
+      disco.material.map.dispose();
+      disco.material.map = tex;
+      disco.material.needsUpdate = true;
+    }
+  }
+
   // Ate onde da para andar em cada direcao: a menor distancia horizontal de
   // algo acima do piso (mesa, parede, brinquedo), em 120 setores.
   function medirAnel(mapa) {
@@ -165,6 +208,7 @@ function iniciar(raiz) {
   function posicionarCamera() {
     const bob = reduzido ? 0 : Math.sin(passo) * 0.025;
     camera.position.set(pos.x, bob, pos.z);
+    if (disco) disco.position.set(pos.x, -ALTURA + 0.01, pos.z);
     camera.lookAt(camera.position.clone().add(direcao()));
     // project() das portas usa a matriz inversa, que o three so refaz no
     // render; sem isto as portas saem na posicao do quadro anterior.
@@ -231,6 +275,7 @@ function iniciar(raiz) {
     if (malha) { cena.remove(malha); malha.geometry.dispose(); malha.material.dispose(); }
     malha = montarMalha(textura, mapa);
     cena.add(malha);
+    pintarDisco(textura);
     yaw = ((chegada != null ? chegada : no.olhar) * Math.PI * 2);
     pitch = -0.08;
     assumir(id, mapa);
@@ -317,6 +362,7 @@ function iniciar(raiz) {
     nova.material.opacity = 1;
     malha = nova;
     cena.add(malha);
+    pintarDisco(textura);
     transicao = null;
     assumir(id, mapa);
     ocupado = false;
@@ -390,7 +436,7 @@ function iniciar(raiz) {
       if (arraste.moveu) {
         const k = (camera.fov * Math.PI / 180) / canvas.clientHeight;
         yaw = arraste.yaw - dx * k;
-        pitch = Math.max(-1.3, Math.min(1.3, arraste.pitch + dy * k));
+        pitch = Math.max(PITCH_MIN, Math.min(PITCH_MAX, arraste.pitch + dy * k));
         precisa = true;
       }
     } else if (e.pointerType === 'mouse' && malha) {

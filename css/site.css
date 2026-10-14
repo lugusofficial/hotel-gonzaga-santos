@@ -86,7 +86,8 @@ h2 { font-size: var(--step-3); }
 .predio > div:not(.arco) > p:has(> .btn) { margin-top: var(--space-6); }
 .fatos { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
 @media (min-width: 40em) { .fatos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.fatos li { padding-top: var(--space-3); background: linear-gradient(var(--filete), var(--filete)) top / 100% 1px no-repeat; }
+.fatos li { padding-top: var(--space-3); background: linear-gradient(var(--filete), var(--filete)) top / 100% 1px no-repeat; display: flex; gap: var(--space-3); align-items: flex-start; }
+.fatos .icon--com { background: var(--azul-claro); }
 .fatos strong { display: block; font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* Apartamentos em arco */
@@ -147,23 +148,46 @@ h2 { font-size: var(--step-3); }
 @media (min-width: 48em) { .variacoes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .variacoes li { padding-top: var(--space-4); border-top: 3px double var(--vinho); display: grid; gap: var(--space-2); }
 .variacoes h3 { text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--step-0); }
+/* Fotos do apartamento em slides: uma por vez, fade, legenda sobre a foto. Sem script, empilhadas. */
+.slides { position: relative; border-radius: var(--radius-lg); outline-offset: 4px; }
+.slides__trilho { display: grid; gap: var(--space-4); }
+.slides__item { margin: 0; position: relative; border-radius: var(--radius-lg); overflow: hidden; }
+.slides__item img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-lg); }
+.slides__item figcaption { position: absolute; left: var(--space-4); right: var(--space-4); bottom: var(--space-4); max-width: 46ch; padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); background: color-mix(in srgb, var(--tinta) 72%, transparent); color: var(--color-bg); font-size: var(--step--1); }
+.slides__barra { display: none; }
+.slides.is-live .slides__trilho { gap: 0; }
+.slides.is-live .slides__item { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity 700ms ease, visibility 0s 700ms; }
+.slides.is-live .slides__item.is-atual { opacity: 1; visibility: visible; transition: opacity 700ms ease; }
+.slides.is-live .slides__item img { transform: scale(1.03); transition: transform 6s ease-out; }
+.slides.is-live .slides__item.is-atual img { transform: none; }
+.slides.is-live .slides__barra { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
+.slides__seta { width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: var(--radius-pill); background: var(--vinho); color: var(--color-bg); transition: background-color 200ms ease, transform 200ms ease; }
+.slides__seta:hover { background: var(--vinho-escuro); transform: scale(1.06); }
+.slides__seta .icon { width: 1.2rem; height: 1.2rem; }
+.slides__nav { display: flex; gap: var(--space-1); }
+.slides__ponto { width: 44px; height: 44px; border: 0; background: none; display: grid; place-items: center; }
+.slides__ponto::before { content: ""; width: 0.6rem; height: 0.6rem; background: var(--filete); transform: rotate(45deg); transition: background-color 300ms ease, transform 300ms ease; }
+.slides__ponto[aria-current="true"]::before { background: var(--vinho); transform: rotate(45deg) scale(1.4); }
+.slides__contador { margin-left: auto; font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: 0.1em; color: var(--tinta-suave); }
+.slides__barra .slides__seta:last-child { order: 2; }
 .galeria { display: grid; gap: var(--space-4); }
 @media (min-width: 48em) { .galeria { grid-template-columns: 3fr 2fr; } }
 .galeria img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-md); aspect-ratio: 4 / 3; }
-/* Outros apartamentos: cartoes com foto, nome, preco e seta; o cartao inteiro e o link */
-.outros { display: grid; gap: var(--space-4); }
-@media (min-width: 40em) { .outros { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 80em) { .outros { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.outro { display: grid; grid-template-columns: 5.5rem 1fr auto; align-items: center; gap: var(--space-4); padding: var(--space-3); border-radius: var(--radius-lg); background: var(--color-bg); color: inherit; text-decoration: none; transition: transform 200ms ease; }
-.outro img { width: 5.5rem; height: 5.5rem; object-fit: cover; border-radius: var(--radius-md); }
-.outro__texto { display: grid; gap: var(--space-1); }
-.outro__nome { font-family: var(--font-display); font-weight: var(--weight-display); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.25; overflow-wrap: normal; transition: color 200ms ease; }
-.outro__preco { font-size: var(--step--1); color: var(--tinta-suave); }
-.outro__ir { width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: var(--radius-pill); background: var(--vinho); color: var(--color-bg); transition: transform 200ms ease, background-color 200ms ease; }
-.outro__ir .icon { width: 1.1rem; height: 1.1rem; }
-.outro:hover { transform: translateY(-3px); }
+/* Outros apartamentos: cartao vertical, foto em arco em cima e o cartao inteiro e o link */
+.outros { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-4); }
+@media (min-width: 64em) { .outros { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); } }
+.outro { display: grid; gap: var(--space-2); align-content: start; color: inherit; text-decoration: none; }
+.outro__foto { display: block; border-radius: var(--arco); overflow: hidden; margin-bottom: var(--space-2); }
+.outro__foto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--arco); transition: transform 700ms cubic-bezier(.2, .8, .2, 1); }
+.outro__nome { font-family: var(--font-display); font-weight: var(--weight-display); font-size: var(--step-1); text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.2; overflow-wrap: normal; transition: color 200ms ease; }
+.outro__preco { color: var(--tinta-suave); }
+.outro__preco small { font-size: var(--step--1); white-space: nowrap; }
+@media (max-width: 40em) { .outro__ver { letter-spacing: 0.04em; white-space: nowrap; } .outro__ver::after { display: none; } }
+.outro__ver { justify-self: start; display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-1); min-height: 2.75rem; font-family: var(--font-display); font-weight: var(--weight-display); font-size: var(--step--1); letter-spacing: 0.1em; text-transform: uppercase; color: var(--vinho); }
+.outro__ver::after { content: ""; width: 1.6rem; height: 1px; background: currentColor; transition: width 250ms ease; }
+.outro:hover .outro__foto img { transform: scale(1.05); }
 .outro:hover .outro__nome { color: var(--vinho); }
-.outro:hover .outro__ir { transform: translateX(3px); background: var(--vinho-escuro); }
+.outro:hover .outro__ver::after { width: 2.8rem; }
 
 /* Barra de reserva: sobe sobre o fim do heroi na home; nas outras paginas
    fica logo abaixo do topo. */
@@ -249,6 +273,10 @@ h2 { font-size: var(--step-3); }
 .tour__veu.is-on { opacity: 1; }
 .tour__aviso { color: var(--vinho); font-weight: var(--weight-body-medium); }
 .tour__mapa { display: none; }
+.tour__salas { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.tour__salas button { min-height: 44px; padding: 0 var(--space-5); border: 0; border-radius: var(--radius-pill); background: var(--azul-claro); color: var(--tinta); font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--step--1); transition: background-color 200ms ease, color 200ms ease; }
+.tour__salas button:hover { background: var(--filete); }
+.tour__salas button[aria-current="true"] { background: var(--vinho); color: var(--color-bg); }
 .tour__dica { font-size: var(--step--1); color: var(--tinta-suave); }
 
 /* Atendente de demonstracao: balao fixo no canto e painel de conversa */
