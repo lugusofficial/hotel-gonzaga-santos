@@ -2,6 +2,11 @@
 // WhatsApp e formulario de reserva. Progressivo: sem este arquivo a pagina
 // continua inteira e legivel.
 (function () {
+  var T = (function () {
+    try { return JSON.parse(document.getElementById('i18n').textContent).ui || {}; }
+    catch (e) { return {}; }
+  })();
+  var t = function (chave, reserva) { return T[chave] || reserva; };
   'use strict';
   var reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var header = document.querySelector('.site-header');
@@ -138,7 +143,7 @@
       e.preventDefault();
       var invalido = form.querySelector(':invalid');
       if (invalido) {
-        if (status) { status.textContent = 'Falta preencher: ' + (invalido.labels && invalido.labels[0] ? invalido.labels[0].textContent : 'um campo'); }
+        if (status) { status.textContent = t('falta', 'Falta preencher: ') + (invalido.labels && invalido.labels[0] ? invalido.labels[0].textContent : t('umCampo', 'um campo')); }
         invalido.focus();
         return;
       }
@@ -151,7 +156,7 @@
         if (v) { linhas.push(rotulo + ': ' + v); }
       });
       var url = form.getAttribute('action') + '?text=' + encodeURIComponent(linhas.join('\n'));
-      if (status) { status.textContent = 'Abrindo o WhatsApp com a sua mensagem.'; }
+      if (status) { status.textContent = t('abrindoWa', 'Abrindo o WhatsApp com a sua mensagem.'); }
       window.open(url, '_blank', 'noopener');
     });
   }
@@ -192,10 +197,10 @@
       var adultos = reserva.querySelector('[name="adultos"]');
       var criancas = reserva.querySelector('[name="criancas"]');
       var linhas = [
-        ['Entrada', br(ent.value)], ['Saída', br(sai.value)],
-        ['Hóspedes', adultos.options[adultos.selectedIndex].text + (criancas.value !== '0' ? ', ' + criancas.options[criancas.selectedIndex].text : '')]
+        [t('entrada', 'Entrada'), br(ent.value)], [t('saida', 'Saída'), br(sai.value)],
+        [t('hospedes', 'Hóspedes'), adultos.options[adultos.selectedIndex].text + (criancas.value !== '0' ? ', ' + criancas.options[criancas.selectedIndex].text : '')]
       ];
-      if (reserva.getAttribute('data-apto')) { linhas.unshift(['Apartamento', reserva.getAttribute('data-apto')]); }
+      if (reserva.getAttribute('data-apto')) { linhas.unshift([t('apartamento', 'Apartamento'), reserva.getAttribute('data-apto')]); }
       resumo.innerHTML = '';
       linhas.forEach(function (l) {
         var div = document.createElement('div');
@@ -217,11 +222,11 @@
       e.preventDefault();
       var campo = news.querySelector('[name="email"]');
       if (!campo.checkValidity()) {
-        nStatus.textContent = 'Confira o e-mail digitado.';
+        nStatus.textContent = t('confiraEmail', 'Confira o e-mail digitado.');
         campo.focus();
         return;
       }
-      nStatus.textContent = 'Pronto! As promoções vão para ' + campo.value + '. (Demonstração: nada foi enviado.)';
+      nStatus.textContent = t('newsOk', 'Pronto! As promoções vão para {email}. (Demonstração: nada foi enviado.)').replace('{email}', campo.value);
       news.reset();
     });
   }

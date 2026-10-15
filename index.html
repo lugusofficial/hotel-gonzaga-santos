@@ -6,6 +6,9 @@
 <title>Sua Marca: hotel na orla do Gonzaga, em Santos</title>
 <meta name="description" content="Hotel em prédio histórico de esquina na Praia do Gonzaga, em Santos. Apartamentos frente mar, café da manhã, sauna, salão de beleza e reserva pelo WhatsApp.">
 <link rel="canonical" href="https://lugusofficial.github.io/hotel-gonzaga-santos/">
+<link rel="alternate" hreflang="pt-br" href="https://lugusofficial.github.io/hotel-gonzaga-santos/">
+<link rel="alternate" hreflang="en" href="https://lugusofficial.github.io/hotel-gonzaga-santos/en/">
+<link rel="alternate" hreflang="x-default" href="https://lugusofficial.github.io/hotel-gonzaga-santos/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sua Marca">
 <meta property="og:title" content="Sua Marca: hotel na orla do Gonzaga, em Santos">
@@ -20,9 +23,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Mulish:wght@400;700&display=swap">
 <link rel="stylesheet" href="css/tokens.css?v=417909fa">
 <link rel="stylesheet" href="css/base.css?v=050fb767">
-<link rel="stylesheet" href="css/site.css?v=9bb3ec54">
+<link rel="stylesheet" href="css/site.css?v=5eafdd78">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Hotel", "name": "Sua Marca", "description": "Hotel em prédio histórico de esquina na orla do Gonzaga, em Santos.", "url": "https://lugusofficial.github.io/hotel-gonzaga-santos/", "telephone": "+0000000000", "email": "reservas@example.com", "address": {"@type": "PostalAddress", "streetAddress": "Av. Exemplo, 1", "addressLocality": "Santos", "addressRegion": "SP", "addressCountry": "BR"}, "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Wi-Fi grátis", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Recepção 24 horas", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Café da manhã", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Sauna", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Salão de beleza", "value": true}]}</script>
-<script src="js/main.js?v=179bbacd" defer></script>
+<script type="application/json" id="i18n">{"ui": {"falta": "Falta preencher: ", "umCampo": "um campo", "abrindoWa": "Abrindo o WhatsApp com a sua mensagem.", "confiraEmail": "Confira o e-mail digitado.", "newsOk": "Pronto! As promoções vão para {email}. (Demonstração: nada foi enviado.)", "entrada": "Entrada", "saida": "Saída", "hospedes": "Hóspedes", "apartamento": "Apartamento", "fotoN": "Foto {i} de {n}", "vcEsta": "Você está em:", "abrindoTour": "Abrindo o tour...", "tentar": "Tentar de novo"}, "bot": {}}</script>
+<script src="js/main.js?v=821c45e2" defer></script>
 <script src="js/atendente.js?v=4bdf351c" defer></script>
 </head>
 <body>
@@ -30,6 +34,7 @@
 <header class="site-header">
   <div class="container site-header__inner">
     <a class="brand" href="index.html" aria-label="Sua Marca, página inicial"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M6 30V14a10 10 0 0 1 20 0v16z" fill="none" stroke="#1f5d94" stroke-width="2.2"/><path d="M10 30V15a6 6 0 0 1 12 0v15" fill="none" stroke="#950f03" stroke-width="1.6"/><path d="M16 9v21M10 20h12" stroke="#1f5d94" stroke-width="1.2"/></svg><span>Sua Marca</span></a>
+    <p class="idiomas"><span class="idiomas__atual" aria-current="true">PT</span><a href="en/index.html" hreflang="en" lang="en">EN<span class="visually-hidden"> (English)</span></a></p>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       <svg class="icon icon--menu" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       <svg class="icon icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -68,7 +73,7 @@
     <div class="field"><label for="r-saida">Saída</label><input id="r-saida" name="saida" type="date" required></div>
     <div class="field"><label for="r-adultos">Adultos</label><select id="r-adultos" name="adultos"><option value="1">1 adulto</option><option value="2" selected>2 adultos</option><option value="3">3 adultos</option><option value="4">4 adultos</option><option value="5">5 adultos</option><option value="6">6 adultos</option></select></div>
     <div class="field"><label for="r-criancas">Crianças</label><select id="r-criancas" name="criancas"><option value="0" selected>Nenhuma</option><option value="1">1 criança</option><option value="2">2 crianças</option><option value="3">3 crianças</option><option value="4">4 crianças</option></select></div>
-    <div class="field"><label for="r-codigo">Cupom</label><input id="r-codigo" name="codigo" autocomplete="off"></div>
+    <div class="field"><label for="r-codigo">Cupom</label><input id="r-codigo" name="codigo" autocomplete="off" placeholder="Se tiver um"></div>
     <button class="btn btn--primary" type="submit">Reservar agora</button>
   </form>
 </div>

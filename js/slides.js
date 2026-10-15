@@ -3,6 +3,11 @@
 // Sem script as fotos aparecem uma embaixo da outra; com movimento reduzido nao troca sozinho.
 (function () {
   'use strict';
+  var T = (function () {
+    try { return JSON.parse(document.getElementById('i18n').textContent).ui || {}; }
+    catch (e) { return {}; }
+  })();
+  var t = function (chave, reserva) { return T[chave] || reserva; };
   var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   [].slice.call(document.querySelectorAll('[data-slides]')).forEach(function (raiz) {
     var itens = [].slice.call(raiz.querySelectorAll('.slides__item'));
@@ -16,7 +21,7 @@
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'slides__ponto';
-      b.setAttribute('aria-label', 'Foto ' + (i + 1) + ' de ' + itens.length);
+      b.setAttribute('aria-label', t('fotoN', 'Foto {i} de {n}').replace('{i}', i + 1).replace('{n}', itens.length));
       b.addEventListener('click', function () { parar(); ir(i); });
       nav.appendChild(b);
       return b;

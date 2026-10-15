@@ -21,6 +21,10 @@ const FOLGA = 0.6;                           // distancia minima de parede e mov
 const PITCH_MIN = -0.75, PITCH_MAX = 1.0;     // em radianos
 const RAIO_DISCO = 0.85;                     // disco que cobre o nadir, em metros
 
+// Textos do tour vem do bloco #i18n da pagina; o portugues e a reserva.
+const T = (() => { try { return JSON.parse(document.getElementById('i18n').textContent).ui || {}; } catch (e) { return {}; } })();
+const t = (chave, reserva) => T[chave] || reserva;
+
 const raiz = document.querySelector('[data-tour]');
 if (raiz) iniciar(raiz);
 
@@ -290,7 +294,7 @@ function iniciar(raiz) {
     montarPortas(no, mapa);
     if (titulo) titulo.textContent = no.nome;
     raiz.querySelectorAll('[data-tour-ir]').forEach((b) => b.setAttribute('aria-current', b.dataset.tourIr === id.replace(/-\d+$/, '') ? 'true' : 'false'));
-    anunciar(`Você está em: ${no.nome}. ${no.dica || ''}`);
+    anunciar(`${t('vcEsta', 'Você está em:')} ${no.nome}. ${no.dica || ''}`);
     precisa = true;
     // Vizinhos ja vem baixando, para a troca de espaco ser imediata.
     no.links.forEach((l) => buscar(l.para).catch(() => {}));
@@ -441,7 +445,7 @@ function iniciar(raiz) {
       }
     } else if (e.pointerType === 'mouse' && malha) {
       const p = pontoNoChao(e.clientX, e.clientY);
-      cursor.visible = !!(p && p.chao);
+      cursor.visible = !!(p && p.chao) && atual.andar > 0;
       if (p && p.chao) {
         const l = limitar(p.x, p.z);
         cursor.position.set(l.x, -ALTURA + 0.02, l.z);
@@ -576,14 +580,14 @@ function iniciar(raiz) {
   async function comecar(primeiro) {
     if (ativo) return;
     entrar.disabled = true;
-    entrar.textContent = 'Abrindo o apartamento...';
+    entrar.textContent = t('abrindoTour', 'Abrindo o tour...');
     try {
       THREE = await import('./vendor/three.module.js');
       renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     } catch (e) {
       aviso.hidden = false;
       entrar.disabled = false;
-      entrar.textContent = 'Tentar de novo';
+      entrar.textContent = t('tentar', 'Tentar de novo');
       return;
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
@@ -603,7 +607,7 @@ function iniciar(raiz) {
     } catch (e) {
       aviso.hidden = false;
       entrar.disabled = false;
-      entrar.textContent = 'Tentar de novo';
+      entrar.textContent = t('tentar', 'Tentar de novo');
       return;
     }
     ativo = true;
